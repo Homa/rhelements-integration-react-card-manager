@@ -12,14 +12,20 @@ export class DefaultPage extends Component {
     actions: PropTypes.object.isRequired,
   };
 
+  componentDidMount() {
+    this.props.actions.fetchRedditList();
+  }
+
   render() {
+    const { fetchRedditListPending, redditList, fetchRedditListError } = this.props.cardGroups;
+
     return (
       <div>
         <header className="card-groups-header">Card manager</header>
         <div className="card-groups">
-            <Group></Group>
-            <Group></Group>
-            <Group></Group>
+            <Group data={redditList} header="reddit list"></Group>
+            <Group header="Read Later"></Group>
+            <Group header="Reply"></Group>
             <AddGroup></AddGroup>
         </div>
       </div>
